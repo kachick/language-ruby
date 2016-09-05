@@ -351,7 +351,7 @@
     'name': 'constant.numeric.ruby'
     'patterns': [
       {
-        'comment': 'rational literal as 3/2r, 1/1.2r and 1.2r',
+        'comment': 'rational literal as 3/2r, 1/1.2r and 1.2r'
         'match': '''(?x)
           \\b
           (?:
@@ -385,7 +385,7 @@
           )r
           \\b
         '''
-      },
+      }
       {
         'match': '''(?x)
           \\b
