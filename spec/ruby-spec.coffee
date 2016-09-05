@@ -66,6 +66,16 @@ describe "Ruby grammar", ->
     {tokens} = grammar.tokenizeLine('0B00100')
     expect(tokens[0]).toEqual value: '0B00100', scopes: ['source.ruby', 'constant.numeric.ruby']
 
+  it "tokenizes rational numbers", ->
+    {tokens} = grammar.tokenizeLine('3/2r')
+    expect(tokens[0]).toEqual value: '3/2r', scopes: ['source.ruby', 'constant.numeric.ruby']
+
+    {tokens} = grammar.tokenizeLine('100_000/0.1r')
+    expect(tokens[0]).toEqual value: '100_000/0.1r', scopes: ['source.ruby', 'constant.numeric.ruby']
+
+    {tokens} = grammar.tokenizeLine('0.1r')
+    expect(tokens[0]).toEqual value: '0.1r', scopes: ['source.ruby', 'constant.numeric.ruby']
+
   it "tokenizes symbols", ->
     {tokens} = grammar.tokenizeLine(':test')
     expect(tokens[0]).toEqual value: ':', scopes: ['source.ruby', 'constant.other.symbol.ruby', 'punctuation.definition.constant.ruby']
