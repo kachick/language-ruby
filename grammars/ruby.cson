@@ -348,23 +348,63 @@
     'name': 'meta.function.method.without-arguments.ruby'
   }
   {
-    'match': '''(?x)
-      \\b
-      (
-        [1-9](?>_?\\d)*                             # 100_000
-        (\\.(?![^[:space:][:digit:]])(?>_?\\d)*)?   # fractional part
-        ([eE][-+]?\\d(?>_?\\d)*)?                   # 1.23e-4
-        |
-        0
-        (?:
-          [xX]\\h(?>_?\\h)*|
-          [oO]?[0-7](?>_?[0-7])*|
-          [bB][01](?>_?[01])*|
-          [dD]\\d(?>_?\\d)*
-        )                                           # A base indicator can only be used with an integer
-      )\\b
-    '''
     'name': 'constant.numeric.ruby'
+    'patterns': [
+      {
+        'comment': 'rational literal as 3/2r, 1/1.2r and 1.2r',
+        'match': '''(?x)
+          \\b
+          (?:
+            (?:
+              [1-9](?>_?\\d)*                             # 100_000
+              (\\.(?![^[:space:][:digit:]])(?>_?\\d)*)?   # fractional part
+              ([eE][-+]?\\d(?>_?\\d)*)?                   # 1.23e-4
+              |
+              0
+              (?:
+                [xX]\\h(?>_?\\h)*|
+                [oO]?[0-7](?>_?[0-7])*|
+                [bB][01](?>_?[01])*|
+                [dD]\\d(?>_?\\d)*
+              )                                           # A base indicator can only be used with an integer
+            )
+          /
+          )?
+          (?:
+            [1-9](?>_?\\d)*                             # 100_000
+            (\\.(?![^[:space:][:digit:]])(?>_?\\d)*)?   # fractional part
+            ([eE][-+]?\\d(?>_?\\d)*)?                   # 1.23e-4
+            |
+            0
+            (?:
+              [xX]\\h(?>_?\\h)*|
+              [oO]?[0-7](?>_?[0-7])*|
+              [bB][01](?>_?[01])*|
+              [dD]\\d(?>_?\\d)*
+            )                                           # A base indicator can only be used with an integer
+          )r
+          \\b
+        '''
+      },
+      {
+        'match': '''(?x)
+          \\b
+          (
+            [1-9](?>_?\\d)*                             # 100_000
+            (\\.(?![^[:space:][:digit:]])(?>_?\\d)*)?   # fractional part
+            ([eE][-+]?\\d(?>_?\\d)*)?                   # 1.23e-4
+            |
+            0
+            (?:
+              [xX]\\h(?>_?\\h)*|
+              [oO]?[0-7](?>_?[0-7])*|
+              [bB][01](?>_?[01])*|
+              [dD]\\d(?>_?\\d)*
+            )                                           # A base indicator can only be used with an integer
+          )\\b
+        '''
+      }
+    ]
   }
   {
     'begin': ':\''
